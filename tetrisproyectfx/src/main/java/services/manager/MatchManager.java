@@ -14,6 +14,13 @@ import services.dao.Match;
 import services.dao.Player;
 public class MatchManager {
 
+	/**
+	 *  This method searches all the matches where a player has participated.
+	 *  It also returns all the data of the players in every match so we can use the names of the players or anything we want 
+	 * @param con Connection to the database.
+	 * @param playerId The id of the player we are searching.
+	 * @return A list of all the matches the player has.
+	 */
 	public List<Match> getPlayerMatches(Connection con, int playerId){
 		try (PreparedStatement stmt = con.prepareStatement("SELECT * FROM matches WHERE user1_id = ? OR user2_id = ?")){
 			stmt.setInt(1, playerId);
@@ -32,7 +39,7 @@ public class MatchManager {
 				matches.add(match);
 			}
 			
-			List<Player>playerList = PlayerManager.findAllById(con, playerIds);
+			List<Player>playerList = PlayerManager.findAllById(con, playerIds); // Find the players that matches the obtained IDs.
 			
 			matches.forEach(match ->{
 				match.setPlayer1(findPlayer(match.getPlayer1Id(), playerList));
@@ -48,13 +55,23 @@ public class MatchManager {
 		}
 	}
 	
+	/**
+	 *  This method calls getPlayerMatches and filter the matches to only return those matches were the player won.
+	 * @param con Connection to the database.
+	 * @param playerId The Id of the player we want to get the matches.
+	 * @return returns a list of all the matches the player won. 
+	 */
 	public List<Match> getMatchesSortedByWinning(Connection con, int playerId){
-		
 		return getPlayerMatches(con, playerId).stream().filter(match -> match.getWinnerId() == playerId).collect(Collectors.toList());
 	}
 	
-public List<Match> getMatchesSortedByLossing(Connection con, int playerId){
-		
+	/**
+	 *  This method calls getPlayerMatches and filter the matches to only return those matches were the player lost.
+	 * @param con Connection to the database.
+	 * @param playerId The Id of the player we want to get the matches.
+	 * @return returns a list of all the matches the player lost. 
+	 */
+	public List<Match> getMatchesSortedByLossing(Connection con, int playerId){
 		return getPlayerMatches(con, playerId).stream().filter(match -> match.getWinnerId() != playerId).collect(Collectors.toList());
 	}
 

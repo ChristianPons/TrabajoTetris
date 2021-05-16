@@ -1,4 +1,5 @@
 package services.manager;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,8 +12,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import services.dao.Player;
+
+/**
+ * 
+ * @author c.pons.hernandez
+ *
+ */
+
 public class PlayerManager {
 
+	/**
+	 *  This method searches and returns all the players in the table players.
+	 * @param con Connection to database.
+	 * @return A list of all the current players.
+	 */
 	public List<Player> getAllPlayers(Connection con){
 		try(Statement stmt = con.createStatement()) {
 			ResultSet result = stmt.executeQuery("SELECT * FROM players");
@@ -34,7 +47,12 @@ public class PlayerManager {
 	}
 	
 	// Quizás sería mejor buscar por el nombre del usuario
-	
+	/**
+	 *  This method gets all the data of a player from the table players.
+	 * @param con Connection to the database.
+	 * @param playerId The id of the player we want to get the data from.
+	 * @return A Player class object.
+	 */
 	public Player getPlayerById(Connection con, int playerId) {
 		try(PreparedStatement stmt = con.prepareStatement("SELECT * FROM players WHERE id = ?")) {
 			stmt.setInt(1, playerId);
@@ -49,6 +67,12 @@ public class PlayerManager {
 		}
 	}
 	
+	/**
+	 *  This method is only used by the method getPlayerMatches from the MatchManager to obtain a list of players. 
+	 * @param con Connection to the database.
+	 * @param playerIds A list of IDs to search in the table players.
+	 * @return A list of players that matches the playerIds' IDs. 
+	 */
 	public static List<Player> findAllById(Connection con, Set<Integer> playerIds) {
 		String sql = String.format("SELECT * FROM players WHERE Code in (%s)",
 				playerIds.stream().map(data -> "\"" + data + "\"").collect(Collectors.joining(", ")));
@@ -71,6 +95,16 @@ public class PlayerManager {
 		
 	}
 	
+	/**
+	 *  This method is used to log in the game. If the player is not in the players table, it won't have access to the program.
+	 * @param con Connection to database.
+	 * @param userName The name in-game of the player.
+	 * @param Password The password of the player to log-in.
+	 * @return	<ul>
+	 * 				<li>If the player exists the method returns a Player class object with its data</li>
+	 * 				<li>If the player does not exist the method will return null</li>
+	 * 			</ul>
+	 */
 	public Player login(Connection con, String userName, String Password) {
 		try(PreparedStatement stmt = con.prepareStatement("SELECT * FROM players WHERE user_name LIKE ? AND password LIKE ?")) {
 			stmt.setString(1, userName);
@@ -86,6 +120,16 @@ public class PlayerManager {
 		}
 	}
 	
+	/**
+	 *  This method is used to add a new player to the database.
+	 * @param con Connection to database.
+	 * @param name The name of the new player.
+	 * @param surnames The surnames of the new player.
+	 * @param userName The in-game name the new player wants.
+	 * @param password The password the new player wants to log-in in the game.
+	 * @param email The email of the new player.
+	 * @param country The country of origin of the new player.
+	 */
 	public void signIn(Connection con, String name, String surnames, String userName, String password, String email, String country) {
 		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO players VALUES((SELECT COALESCE(MAX(id),0)) + 1,?,?,?,?,?,?,?,?)")){
 			stmt.setString(1, name);
@@ -104,6 +148,12 @@ public class PlayerManager {
 		}
 	}
 	
+	/**
+	 *  This method is used to change the in-game name of a player.
+	 * @param con Connection to database.
+	 * @param userName the in-game name of the player.
+	 * @param newUserName The new name the player wants.
+	 */
 	public void changeUserName(Connection con, String userName, String newUserName) {
 		try(PreparedStatement stmt = con.prepareStatement("UPDATE players SET user_name = ? WHERE user_name = ?")) {
 			stmt.setString(1, newUserName);
@@ -115,6 +165,12 @@ public class PlayerManager {
 		}
 	}
 	
+	/**
+	 *  This method is used to change the password of a player.
+	 * @param con Connection to database.
+	 * @param userName password of the player.
+	 * @param newUserName The new password the player wants.
+	 */
 	public void changePassword(Connection con, String userName, String newPassword) {
 		try(PreparedStatement stmt = con.prepareStatement("UPDATE players SET password = ? WHERE user_name = ?")) {
 			stmt.setString(1, newPassword);

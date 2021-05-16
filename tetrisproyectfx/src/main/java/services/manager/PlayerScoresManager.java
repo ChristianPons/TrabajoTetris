@@ -7,8 +7,21 @@ import java.sql.SQLException;
 
 import services.dao.PlayerScores;
 
-public class PlayerScoresManager {
+/**
+ * 
+ * @author c.pons.hernandez
+ *
+ */
 
+public class PlayerScoresManager {
+	
+	
+	/**
+	 * 	This method searches the player in the player_score_lists and returns its scores. 
+	 * @param con Connection to the database.
+	 * @param playerId	the id of the player we want to get the scores from.
+	 * @return A PlayerScores class object with its 5 best scores.
+	 */
 	public PlayerScores getPlayerScores(Connection con, int playerId) {
 		try (PreparedStatement stmt = con.prepareStatement("SELECT * FROM player_point_lists WHERE player_id = ?")){
 			stmt.setInt(1, playerId);
@@ -23,6 +36,12 @@ public class PlayerScoresManager {
 		}
 	}
 	
+	/**
+	 *  This method updates the scores of a player with a new one.
+	 * @param con Connection to the database.
+	 * @param playerId the id of the player we are going to update its scores.
+	 * @param newScore the new score to add if its greater than any of its scores.
+	 */
 	public void updatePlayerScores(Connection con, int playerId, int newScore) {
 		try (PreparedStatement stmt = con.prepareStatement(
 				"UPDATE player_point_lists SET highscore = ?, score2 = ? score3 = ?, score4 = ?, score5 = ?")) {
