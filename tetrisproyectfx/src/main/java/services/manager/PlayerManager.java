@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import services.dao.Player;
 public class PlayerManager {
@@ -45,6 +47,28 @@ public class PlayerManager {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public static List<Player> findAllById(Connection con, Set<Integer> playerIds) {
+		String sql = String.format("SELECT * FROM players WHERE Code in (%s)",
+				playerIds.stream().map(data -> "\"" + data + "\"").collect(Collectors.joining(", ")));
+		try(Statement stmt = con.createStatement()) {
+			ResultSet result = stmt.executeQuery(sql);
+			result.beforeFirst();
+			
+			List<Player>playerList = new ArrayList<>();
+			
+			while(result.next()) {
+				playerList.add(new Player(result));
+			}
+			
+			return playerList;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 	
 	public Player login(Connection con, String userName, String Password) {
@@ -101,4 +125,6 @@ public class PlayerManager {
 			e.printStackTrace();
 		}
 	}
+
+	
 }
