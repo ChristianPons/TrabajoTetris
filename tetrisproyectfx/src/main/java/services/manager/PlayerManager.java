@@ -40,7 +40,6 @@ public class PlayerManager {
 			return players;
 			
 		} catch (SQLException e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			return null;
 		}

@@ -5,9 +5,8 @@
     <artifactId>tetrisproyectfx</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>1.8</maven.compiler.target>
-		<maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.15</maven.compiler.target>
+		<maven.compiler.source>1.15</maven.compiler.source>
 		<lombokVersion>1.18.20</lombokVersion>
     </properties>
     <dependencies>
@@ -67,7 +66,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <release>11</release>
+                    <release>15</release>
                 </configuration>
             </plugin>
             <plugin>
