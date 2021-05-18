@@ -27,14 +27,7 @@ public class LoginController {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			Player player = PlayerManager.login(con, userName.getText(), password.getText());
 			
-			// Esto es temporal
-			
-			BasicData data = new BasicData();
-			data.setPlayer(player);
-			new MainMenuController(data);
-			
-			
-			/*if (player != null) {
+			if(player != null) {
 				BasicData data = new BasicData();
 				data.setPlayer(player);
 				new MainMenuController(data);
@@ -43,7 +36,7 @@ public class LoginController {
 				Alert a = new Alert(AlertType.ERROR);
 				a.setContentText("EL nombre o la contraseña está mal, por favor inténtelo de nuevo");
 				a.show();
-			}*/
+			}
 			
 			
 		} catch (SQLException e) {
@@ -55,7 +48,7 @@ public class LoginController {
 	
 	@FXML
 	public void signIn() throws IOException {
-		App.setRoot("SignIn");
+		new SignInController();
 	}
 	
 }

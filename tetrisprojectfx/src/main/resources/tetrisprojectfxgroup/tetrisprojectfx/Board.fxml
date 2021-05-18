@@ -10,7 +10,7 @@
    <children>
       <Pane layoutY="-8.0" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #4092f5;">
          <children>
-            <GridPane gridLinesVisible="true" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" style="-fx-background-color: #011124; -fx-border-color: white;">
+            <GridPane fx:id="board" gridLinesVisible="true" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" style="-fx-background-color: #011124; -fx-border-color: white;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -53,7 +53,7 @@
                         <Font name="System Bold" size="21.0" />
                      </font>
                   </Label>
-                  <GridPane id="piece1" prefHeight="102.0" prefWidth="120.0">
+                  <GridPane fx:id="piece1" prefHeight="102.0" prefWidth="120.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -66,7 +66,7 @@
                     </rowConstraints>
                   </GridPane>
                   <Label />
-                  <GridPane id="piece2" prefHeight="103.0" prefWidth="120.0">
+                  <GridPane fx:id="piece2" prefHeight="103.0" prefWidth="120.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -79,7 +79,7 @@
                     </rowConstraints>
                   </GridPane>
                   <Label />
-                  <GridPane id="piece3" prefHeight="98.0" prefWidth="120.0">
+                  <GridPane fx:id="piece3" prefHeight="98.0" prefWidth="120.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -100,7 +100,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <GridPane id="pieceHolded" gridLinesVisible="true" prefHeight="99.0" prefWidth="120.0">
+                  <GridPane fx:id="pieceHolded" gridLinesVisible="true" prefHeight="99.0" prefWidth="120.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -116,7 +116,7 @@
             </VBox>
             <Pane layoutX="364.0" layoutY="8.0" prefHeight="121.0" prefWidth="120.0">
                <children>
-                  <Label id="level" layoutX="59.0" layoutY="14.0" prefHeight="25.0" prefWidth="64.0" textFill="WHITE">
+                  <Label fx:id="level" layoutX="59.0" layoutY="14.0" prefHeight="25.0" prefWidth="64.0" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -126,7 +126,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label id="score" layoutX="58.0" layoutY="48.0" prefHeight="25.0" prefWidth="64.0" textFill="WHITE">
+                  <Label fx:id="score" layoutX="58.0" layoutY="48.0" prefHeight="25.0" prefWidth="64.0" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

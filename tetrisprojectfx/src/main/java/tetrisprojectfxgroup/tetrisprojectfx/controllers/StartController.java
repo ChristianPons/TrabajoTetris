@@ -10,7 +10,6 @@ import tetrisprojectfxgroup.tetrisprojectfx.App;
 public class StartController {
 	
 	public StartController() throws IOException {
-		App.setRoot("Start");
 	}
 	
     @FXML

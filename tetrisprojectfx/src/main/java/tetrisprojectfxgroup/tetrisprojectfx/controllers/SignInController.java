@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import services.conector.Conector;
 import services.manager.PlayerManager;
+import tetrisprojectfxgroup.tetrisprojectfx.App;
 
 public class SignInController {
 
@@ -22,6 +23,10 @@ public class SignInController {
 	@FXML private PasswordField confirmPassword;
 	@FXML private TextField email;
 	@FXML private TextField country;
+	
+	public SignInController() throws IOException {
+		App.setRoot("SignIn");
+	}
 	
 	@FXML
 	public void trySignIn(ActionEvent evt) {

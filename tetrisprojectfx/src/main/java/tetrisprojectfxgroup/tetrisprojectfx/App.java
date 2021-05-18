@@ -25,29 +25,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
     	
-        scene = new Scene(loadFXML("Start"), 640, 480);
-     // create a input stream
-
-
-        // create a image
-        Image image = new Image(this.getClass().getClassLoader().getResourceAsStream("miscellaneous/Background.png"));
-
-        // create a background image
-        BackgroundImage backgroundimage = new BackgroundImage(image, 
-                                         BackgroundRepeat.NO_REPEAT, 
-                                         BackgroundRepeat.NO_REPEAT,
-                                         BackgroundPosition.DEFAULT, 
-                                         new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
-
-        // create Background
-        Background background = new Background(backgroundimage);
-
-        // set background
-        ((VBox) scene.lookup("#vbox")).setBackground(background);
+        scene = new Scene(loadFXML("Start"));
         stage.setScene(scene);
-        System.out.println(stage.getWidth());
-        System.out.println(stage.getOutputScaleY());
         stage.show();
+
     }
 
     public static void setRoot(String fxml) throws IOException {

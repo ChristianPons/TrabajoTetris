@@ -10,12 +10,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
 
-<VBox fx:id="vbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="522.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tetrisprojectfxgroup.tetrisprojectfx.controllers.StartController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="522.0" style="-fx-background-image: url(&quot;miscellaneous/Background.png&quot;); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tetrisprojectfxgroup.tetrisprojectfx.controllers.StartController">
    <children>
-      <Pane opacity="0.75" prefHeight="485.0" prefWidth="355.0">
+      <Pane prefHeight="438.0" prefWidth="522.0">
          <children>
-            <Button fx:id="primaryButton" layoutX="224.0" layoutY="333.0" onAction="#goToLogin" prefHeight="31.0" prefWidth="184.0" style="-fx-background-color: #41a0e8;" text="Iniciar sesión" />
+            <Button layoutX="182.0" layoutY="354.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="31.0" prefWidth="158.0" text="Iniciar Sesión" />
          </children>
       </Pane>
    </children>
-</VBox>
+</AnchorPane>
