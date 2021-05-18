@@ -25,7 +25,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
     	
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("Start"), 640, 480);
      // create a input stream
 
 
@@ -45,8 +45,8 @@ public class App extends Application {
         // set background
         ((VBox) scene.lookup("#vbox")).setBackground(background);
         stage.setScene(scene);
-        System.out.println(stage.getRenderScaleX());
-        System.out.println(stage.getRenderScaleY());
+        System.out.println(stage.getWidth());
+        System.out.println(stage.getOutputScaleY());
         stage.show();
     }
 
