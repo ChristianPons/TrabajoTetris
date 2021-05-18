@@ -10,5 +10,16 @@ import services.dao.Player;
 @ToString
 public class BasicData {
 
-	private Player player;
+	private static Player player;
+
+	public static Player getPlayer() {
+		// TODO Auto-generated method stub
+		return player;
+	}
+
+	public void setPlayer(Player player2) {
+		player = player2;
+		
+	}
+
 }

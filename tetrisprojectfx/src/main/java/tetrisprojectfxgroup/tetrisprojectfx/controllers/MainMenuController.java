@@ -1,27 +1,17 @@
 package tetrisprojectfxgroup.tetrisprojectfx.controllers;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import model.BasicData;
 import tetrisprojectfxgroup.tetrisprojectfx.App;
 
 public class MainMenuController {
 
-	private BasicData data;
-	
-	public MainMenuController(BasicData data) {
-		this.data = data;
-		prepareView();
-		
-	}
 
-	private void prepareView() {
-		try {
-			App.setRoot("MainMenu");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+	@FXML private Label userName;
+	
 	
 	@FXML
 	public void searchMatch() {
@@ -37,4 +27,11 @@ public class MainMenuController {
 	public void goToOptions() {
 		
 	}
+
+	public void setPlayer() {
+		
+		this.userName.setText(BasicData.getPlayer().getUserName());
+		
+	}
+
 }
