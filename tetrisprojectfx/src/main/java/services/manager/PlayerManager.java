@@ -129,7 +129,7 @@ public class PlayerManager {
 	 * @param email The email of the new player.
 	 * @param country The country of origin of the new player.
 	 */
-	public void signIn(Connection con, String name, String surnames, String userName, String password, String email, String country) {
+	public static void signIn(Connection con, String name, String surnames, String userName, String password, String email, String country) {
 		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO players VALUES((SELECT COALESCE(MAX(id),0)) + 1,?,?,?,?,?,?,?,?)")){
 			stmt.setString(1, name);
 			stmt.setString(2, surnames);
