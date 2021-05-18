@@ -46,6 +46,8 @@ public class App extends Application {
         // set background
         ((VBox) scene.lookup("#vbox")).setBackground(background);
         stage.setScene(scene);
+        System.out.println(stage.getRenderScaleX());
+        System.out.println(stage.getRenderScaleY());
         stage.show();
     }
 

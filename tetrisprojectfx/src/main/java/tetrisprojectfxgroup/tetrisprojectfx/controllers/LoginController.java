@@ -8,11 +8,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import model.*;
 import javafx.scene.control.Label;
 import services.conector.Conector;
 import services.manager.PlayerManager;
 import tetrisprojectfxgroup.tetrisprojectfx.App;
-import Model.*;
 
 public class LoginController {
 	

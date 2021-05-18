@@ -16,6 +16,7 @@ public class PrimaryController {
     @FXML
     private void switchToSecondary(ActionEvent evt) throws IOException {
     	App.setRoot("Login");
+
         
        
     }
