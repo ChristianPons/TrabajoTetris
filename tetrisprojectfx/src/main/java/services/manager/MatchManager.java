@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -76,18 +75,18 @@ public class MatchManager {
 		return getPlayerMatches(con, playerId).stream().filter(match -> match.getWinnerId() != playerId).collect(Collectors.toList());
 	}
 	
-	public void addMatch(Connection con, int player1Id, int player1Points, int player2Id, int player2Points, int winnerId) {
-		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO MATCHES VALUES((SELECT COALESCE(MAX(id),0)) + 1, ?,?,?,?,?,?)")){
-			stmt.setInt(1, player1Id);
-			stmt.setInt(2, player1Points);
-			stmt.setInt(3, player2Id);
-			stmt.setInt(4, player2Points);
-			stmt.setInt(5, winnerId);
-			stmt.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
-			stmt.executeUpdate();
-			
+	public boolean addMatch(Connection con, int matchId, int player1Id, int player1Points, int player2Id, int player2Points) {
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO matches VALUES(?, ?, ?, ?, ?, ?, sysdate())")){
+			stmt.setInt(1, matchId);
+			stmt.setInt(2, player1Id);
+			stmt.setInt(3, player1Points);
+			stmt.setInt(4, player2Id);
+			stmt.setInt(5, player2Points);
+			stmt.setInt(6, player1Points > player2Points ? player1Id : player2Id);
+			return stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 
