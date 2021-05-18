@@ -16,6 +16,7 @@ import model.BasicData;
 import services.conector.Conector;
 import services.dao.Player;
 import services.manager.PlayerManager;
+import tetrisprojectfxgroup.tetrisprojectfx.App;
 
 public class LoginController {
 	
