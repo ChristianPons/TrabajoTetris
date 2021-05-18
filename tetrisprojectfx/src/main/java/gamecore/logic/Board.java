@@ -162,11 +162,22 @@ public class Board {
 		}
 	}
 	
+	/**
+	 * Gets the JSON document from the current board
+	 * 
+	 * @return A JSON string - String
+	 */
 	public String getJSON() {
 		JSONArray jsonBoard = new JSONArray(board);
 		return "{\"board\": " + jsonBoard.toString() + "}";
 	}
 	
+	/**
+	 * Generates a board from a JSON String
+	 * 
+	 * @param jsonString - String
+	 * @return the board coming from the JSON
+	 */
 	public static Board getFromJSONString(String jsonString) {
 		Board board = new Board();
 		int[][] boardArray = board.getBoard();
