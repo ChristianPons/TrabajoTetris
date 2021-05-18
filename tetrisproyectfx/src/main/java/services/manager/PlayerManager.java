@@ -104,7 +104,7 @@ public class PlayerManager {
 	 * 				<li>If the player does not exist the method will return null</li>
 	 * 			</ul>
 	 */
-	public Player login(Connection con, String userName, String Password) {
+	public static  Player login(Connection con, String userName, String Password) {
 		try(PreparedStatement stmt = con.prepareStatement("SELECT * FROM players WHERE user_name LIKE ? AND password LIKE ?")) {
 			stmt.setString(1, userName);
 			stmt.setString(2, Password);

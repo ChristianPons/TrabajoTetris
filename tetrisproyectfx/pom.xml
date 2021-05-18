@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>tetrisproyectfxgroup</groupId>
-    <artifactId>tetrisproyectfx</artifactId>
+    <groupId>tetrisprojectfxgroup</groupId>
+    <artifactId>tetrisprojectfx</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <properties>
         <maven.compiler.target>1.15</maven.compiler.target>
@@ -79,7 +79,7 @@
                         <!-- Usage: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>tetrisproyectfxgroup.tetrisproyectfx.App</mainClass>
+                            <mainClass>tetrisprojectfxgroup.tetrisprojectfx.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>
