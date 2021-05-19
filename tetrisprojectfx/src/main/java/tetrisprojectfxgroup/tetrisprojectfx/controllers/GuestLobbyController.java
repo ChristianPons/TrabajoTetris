@@ -1,5 +1,6 @@
 package tetrisprojectfxgroup.tetrisprojectfx.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -12,8 +13,9 @@ import model.BasicData;
 import services.conector.Conector;
 import services.dao.GameLobby;
 import services.manager.LobbyManager;
+import tetrisprojectfxgroup.tetrisprojectfx.App;
 
-public class HostLobbyController implements Initializable{
+public class GuestLobbyController implements Initializable {
 	
 	private static final int INTERVAL = 500;
 	
@@ -23,9 +25,9 @@ public class HostLobbyController implements Initializable{
 	private Label hostName;
 	@FXML
 	private Label guestName;
-	private LobbyManager lobbyManager = new LobbyManager(BasicData.getPlayer().getPlayerId(),
-			new Conector().getMySQLConnection());
 	private GameLobby lobby;
+	private LobbyManager lobbyManager = new LobbyManager(BasicData.getJoinedLobbyId(), BasicData.getPlayer().getPlayerId(),
+			new Conector().getMySQLConnection());
 	
 	private VariableTimer timer = new VariableTimer() {
 		@Override
@@ -38,22 +40,30 @@ public class HostLobbyController implements Initializable{
 					lobbyId.setText("ID de la sala: " + lobby.getRoomId());
 					hostName.setText("Dueño: " + lobby.getHost().getName());
 					guestName.setText("Invitado: " + lobby.getGuest().getName());
-					
 				}
 				
 			});
+			if(lobbyManager.checkIfStarted()) {
+				
+			}
 		}
 	};
 
 	@Override
-	public void initialize(URL url, ResourceBundle resources) {
-		lobbyManager.joinLobby();
+	public void initialize(URL location, ResourceBundle resources) {
+		if(!lobbyManager.joinLobby()) {
+			try {
+				goBack();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		timer.setInterval(INTERVAL);
 	}
 	
 	@FXML
-	public void startGame() {
-		if(lobbyManager.startGame()) timer.stop();
+	public void goBack() throws IOException {
+		App.setRoot("MultiplayerOptions");
 	}
 
 }
