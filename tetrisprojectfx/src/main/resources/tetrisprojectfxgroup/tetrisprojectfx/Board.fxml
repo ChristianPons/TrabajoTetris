@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -10,7 +11,7 @@
    <children>
       <Pane layoutY="-8.0" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #4092f5;">
          <children>
-            <GridPane fx:id="board" gridLinesVisible="true" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" style="-fx-background-color: #011124; -fx-border-color: white;" >
+            <GridPane fx:id="board" gridLinesVisible="true" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #011124; -fx-border-color: white;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -46,12 +47,15 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
-            <VBox layoutX="365.0" layoutY="90.0" maxWidth="-Infinity" prefHeight="356.0" prefWidth="120.0" style="-fx-background-color: #011124;">
+            <VBox layoutX="315.0" layoutY="90.0" maxWidth="-Infinity" prefHeight="356.0" prefWidth="170.0" style="-fx-background-color: #011124;">
                <children>
-                  <Label alignment="CENTER" prefHeight="46.0" prefWidth="120.0" text="Siguiente" textFill="WHITE">
+                  <Label alignment="CENTER" prefHeight="34.0" prefWidth="158.0" text="Siguiente" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="21.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </Label>
                   <GridPane fx:id="piece1" prefHeight="102.0" prefWidth="120.0">
                     <columnConstraints>
@@ -93,9 +97,9 @@
                   </GridPane>
                </children>
             </VBox>
-            <VBox layoutX="365.0" layoutY="465.0" prefHeight="121.0" prefWidth="120.0" style="-fx-background-color: #011124;">
+            <VBox layoutX="315.0" layoutY="465.0" prefHeight="121.0" prefWidth="170.0" style="-fx-background-color: #011124;">
                <children>
-                  <Label alignment="CENTER" prefHeight="23.0" prefWidth="120.0" text="Manteniendo" textFill="WHITE">
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="156.0" text="Manteniendo" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -114,7 +118,7 @@
                   </GridPane>
                </children>
             </VBox>
-            <Pane layoutX="364.0" layoutY="8.0" prefHeight="121.0" prefWidth="120.0">
+            <Pane layoutX="320.0" layoutY="8.0" prefHeight="121.0" prefWidth="164.0">
                <children>
                   <Label fx:id="level" layoutX="59.0" layoutY="14.0" prefHeight="25.0" prefWidth="64.0" textFill="WHITE">
                      <font>
