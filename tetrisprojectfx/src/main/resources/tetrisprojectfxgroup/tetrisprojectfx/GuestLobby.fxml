@@ -8,8 +8,9 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tetrisprojectfxgroup.tetrisprojectfx.controllers.GuestLobbyController">
    <children>
       <Label fx:id="hostName" layoutX="51.0" layoutY="80.0" prefHeight="63.0" prefWidth="169.0" text="Creador" />
-      <Label fx:id="guestName" layoutX="281.0" layoutY="86.0" prefHeight="63.0" prefWidth="169.0" text="Invitado" />
+      <Label fx:id="guestName" layoutX="282.0" layoutY="80.0" prefHeight="63.0" prefWidth="169.0" text="Invitado" />
       <Label fx:id="lobbyId" layoutX="174.0" layoutY="36.0" prefHeight="17.0" prefWidth="140.0" text="Id de la sala: " />
       <Label layoutX="136.0" layoutY="196.0" prefHeight="41.0" prefWidth="202.0" text="Esperando a que empieze la partida..." />
+      <Button layoutX="25.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" text="Volver" />
    </children>
 </AnchorPane>

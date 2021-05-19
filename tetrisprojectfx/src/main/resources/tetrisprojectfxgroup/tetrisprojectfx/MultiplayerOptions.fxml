@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="335.0" prefWidth="402.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="tetrisprojectfxgroup.tetrisprojectfx.controllers.MultiplayerOptionsController">
+<AnchorPane prefHeight="335.0" prefWidth="402.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tetrisprojectfxgroup.tetrisprojectfx.controllers.MultiplayerOptionsController">
    <children>
       <Pane prefHeight="335.0" prefWidth="487.0">
          <children>
@@ -19,6 +18,7 @@
                </font>
             </Label>
             <TextField fx:id="idLobby" layoutX="183.0" layoutY="208.0" prefHeight="31.0" prefWidth="250.0" promptText="ID de la partida (no es obligatorio)" />
+            <Button layoutX="18.0" layoutY="13.0" mnemonicParsing="false" onAction="#goBack" text="Volver" />
          </children>
       </Pane>
    </children>

@@ -25,4 +25,13 @@ public class MultiplayerOptionsController {
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML 
+	public void goBack(){
+		try {
+			App.setRoot("MainMenu");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -2,6 +2,7 @@ package tetrisprojectfxgroup.tetrisprojectfx;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import gamecore.logic.Board;
 import javafx.application.Application;
@@ -31,32 +32,11 @@ public class App extends Application {
         stage.show();
     }
     
-    public void ejemploPartida() {
-        Connection connection = new Conector().getMySQLConnection();
-        LobbyManager host = new LobbyManager(2, connection);
-        host.joinLobby();
-        LobbyManager guest = new LobbyManager(host.getLobbyId(), 3, connection);
-        System.out.println(host.findLobby());
-        guest.joinLobby();
-        System.out.println(host.findLobby());
-        host.startGame();
-        MatchStateManager hostMsm = new MatchStateManager(guest.getLobbyId(), guest.getUserId() ,guest.findLobby().getGuest().getPlayerId(), true, connection);
-        MatchStateManager guestMsm = new MatchStateManager(guest.getLobbyId(), guest.findLobby().getHost().getPlayerId(), guest.getUserId(), false, connection);
-        hostMsm.createMatch();
-        guestMsm.updateState(new Board().getJSON(), 200);
-        hostMsm.gameOver(new Board().getJSON(), 1000);
-        guestMsm.gameOver(new Board().getJSON(), 500);
-        guest.leaveLobby();
-        host.leaveLobby();
-        System.out.println(hostMsm.getLastStateFromMatch());
-    }
+    
 
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
         myStage.sizeToScene();
-        
-       
-        
 
     }
 
