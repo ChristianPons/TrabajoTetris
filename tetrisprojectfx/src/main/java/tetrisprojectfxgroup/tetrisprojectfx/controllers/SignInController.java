@@ -60,6 +60,6 @@ public class SignInController {
 	
 	@FXML
 	public void goBack() throws IOException {
-		App.setRoot("Start");
+		App.setRoot("Login");
 	}
 }
