@@ -24,38 +24,42 @@ public class SignInController {
 	@FXML private TextField email;
 	@FXML private TextField country;
 	
-	public SignInController() throws IOException {
-		App.setRoot("SignIn");
-	}
-	
 	@FXML
 	public void trySignIn(ActionEvent evt) {
 		if (name.getText() != null && surnames.getText() != null && userName.getText() != null
 				&& password.getText() != null && confirmPassword.getText() != null && email.getText() != null
-				&& country.getText() != null && password.getText() == confirmPassword.getText()) {
+				&& country.getText() != null && password.getText().equals(confirmPassword.getText())) {
 			
 			try (Connection con = new Conector().getMySQLConnection()) {
 				PlayerManager.signIn(con, name.getText(), surnames.getText(), userName.getText(), password.getText(),
 						email.getText(), country.getText());
 				
-				try {
-					new StartController();
 					
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+					goBack();
+				
 				
 			}catch(SQLException e) {
 				e.printStackTrace();
-			}			
+			}catch(IOException f) {
+				f.printStackTrace();
+			}
 		
 		}else {
+			if(surnames.getText() != null) {
+				System.out.println(name.getText());
+			}
 			Alert a = new Alert(AlertType.ERROR);
 			String tpassword = "La contraseña introducida y su confirmación no son iguales";
 			String empty = "Alguno de los campos está vacío, por favor rellene todos los campos";
-			a.setContentText((password.getText() == confirmPassword.getText()) ? tpassword:empty);
+			a.setContentText(password.getText().equals(confirmPassword.getText()) ? tpassword:empty);
 			a.show();
 		}
 		
+		
+	}
+	
+	@FXML
+	public void goBack() throws IOException {
+		App.setRoot("Start");
 	}
 }

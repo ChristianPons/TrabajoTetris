@@ -5,8 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -130,15 +131,15 @@ public class PlayerManager {
 	 * @param country The country of origin of the new player.
 	 */
 	public static void signIn(Connection con, String name, String surnames, String userName, String password, String email, String country) {
-		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO players VALUES((SELECT COALESCE(MAX(id),0)) + 1,?,?,?,?,?,?,?,?)")){
+		try (PreparedStatement stmt = con.prepareStatement("INSERT INTO players VALUES((SELECT COALESCE(MAX(a.id),0) FROM players a) + 1,?,?,?,?,?,?,?,?)")){
 			stmt.setString(1, name);
 			stmt.setString(2, surnames);
 			stmt.setString(3, userName);
 			stmt.setString(4, password);
 			stmt.setString(5, email);
 			stmt.setString(6, country);
-			stmt.setDate(7, (java.sql.Date) new Date(System.currentTimeMillis()));
-			stmt.setTimestamp(8, null);
+			stmt.setDate(7, new Date(System.currentTimeMillis()));
+			stmt.setTimestamp(8, new Timestamp(System.currentTimeMillis()));
 			stmt.executeUpdate();
 
 			
