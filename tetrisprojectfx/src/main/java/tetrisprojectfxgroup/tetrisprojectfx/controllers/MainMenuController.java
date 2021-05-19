@@ -22,8 +22,8 @@ public class MainMenuController implements Initializable{
 	}
 	
 	@FXML
-	public void soloPlay() {
-		
+	public void soloPlay() throws IOException {
+		App.setRoot("Board");
 	}
 	
 	@FXML

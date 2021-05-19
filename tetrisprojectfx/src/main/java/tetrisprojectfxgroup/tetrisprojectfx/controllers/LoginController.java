@@ -26,6 +26,16 @@ public class LoginController {
 	@Getter BasicData data;
 
 
+	/**
+	 * This method tries to find a player that matches with the user name and password in the text fields.
+	 * <ul>
+	 * 		<li>if the player is found, it will be saved in BasicData.</li>
+	 * 		<li>if no player is found, an error box will be shown.</li>
+	 * </ul>
+	 * @param evt
+	 * @throws IOException
+	 */
+	
 	@FXML
 	public void tryLogin(ActionEvent evt) throws IOException {
 		try (Connection con = new Conector().getMySQLConnection()) {
@@ -46,6 +56,11 @@ public class LoginController {
 		}
 			
 		}
+	
+	/**
+	 * This method calls the window to sign-in in the game.
+	 * @throws IOException
+	 */
 	
 	@FXML
 	public void signIn() throws IOException {
