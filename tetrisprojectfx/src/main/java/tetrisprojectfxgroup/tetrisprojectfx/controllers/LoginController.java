@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -31,8 +30,8 @@ public class LoginController {
 	public void tryLogin(ActionEvent evt) throws IOException {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			Player player = PlayerManager.login(con, userName.getText(), password.getText());
-			
-			if(player != null) {
+			System.out.println(player);
+			if(player.getPlayerId() == 0) {
 				throw new SQLException();
 			}
 			
