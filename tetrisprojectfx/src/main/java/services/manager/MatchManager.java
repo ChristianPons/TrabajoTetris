@@ -89,6 +89,43 @@ public class MatchManager {
 			return false;
 		}
 	}
+	
+	public Match findMatchById(Connection con, int matchId) {
+		try(PreparedStatement prepstmt = con.prepareStatement("select * from matches where id = ?")){
+			prepstmt.setInt(1, matchId);
+			ResultSet result = prepstmt.executeQuery();
+			if(result.next()) {
+				Player player1 = new PlayerManager().getPlayerById(con, result.getInt("user1_id"));
+				Player player2 = new PlayerManager().getPlayerById(con, result.getInt("user2_id"));
+				Match match = new Match(result);
+				match.setPlayer1(player1);
+				match.setPlayer2(player2);
+				return match;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public List<Match> findAllMatches(Connection con){
+		List<Match> matches = new ArrayList<>();
+		try(PreparedStatement prepstmt = con.prepareStatement("select * from matches")){
+			ResultSet result = prepstmt.executeQuery();
+			result.beforeFirst();
+			while(result.next()) {
+				Player player1 = new PlayerManager().getPlayerById(con, result.getInt("user1_id"));
+				Player player2 = new PlayerManager().getPlayerById(con, result.getInt("user2_id"));
+				Match match = new Match(result);
+				match.setPlayer1(player1);
+				match.setPlayer2(player2);
+				matches.add(match);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return matches;
+	}
 
 	private Player findPlayer(int playerId, List<Player> playerList) {
 		Player playerFound = playerList.stream().filter(player -> player.getPlayerId() == playerId).findFirst().orElse(null);
