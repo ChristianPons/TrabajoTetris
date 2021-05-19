@@ -3,6 +3,7 @@ package services.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import gamecore.logic.Board;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -30,5 +31,15 @@ public class MatchState {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Board getRelativePlayer1Board(boolean isPlayer1) {
+		if(isPlayer1) return Board.getFromJSONString(user1Board);
+		else return Board.getFromJSONString(user2Board);
+	}
+	
+	public Board getRelativePlayer2Board(boolean isPlayer1) {
+		if(isPlayer1) return Board.getFromJSONString(user2Board);
+		else return Board.getFromJSONString(user1Board);
 	}
 }
