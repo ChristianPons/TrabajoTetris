@@ -1,23 +1,27 @@
 package tetrisprojectfxgroup.tetrisprojectfx.controllers;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import model.BasicData;
 import services.conector.Conector;
 import services.dao.GameLobby;
 import services.manager.LobbyManager;
 
-public class HostLobbyController {
+public class HostLobbyController implements Initializable{
 	@FXML
 	private Label lobbyId;
 	@FXML
 	private Label hostName;
 	@FXML
 	private Label guestName;
-	@FXML private LobbyManager lobbyManager = new LobbyManager(BasicData.getPlayer().getPlayerId(),
+	private LobbyManager lobbyManager = new LobbyManager(BasicData.getPlayer().getPlayerId(),
 			new Conector().getMySQLConnection());
-	@FXML GameLobby lobby = lobbyManager.findLobby();
-	@FXML private Runnable runnable = new Runnable() {
+	private GameLobby lobby = lobbyManager.findLobby();
+	private Runnable runnable = new Runnable() {
 		
 		@Override
 		public void run() {
@@ -36,10 +40,10 @@ public class HostLobbyController {
 			
 		}
 	};
-	@FXML private Thread thread = new Thread(runnable);
+	private Thread thread = new Thread(runnable);
 
-	@FXML
-	public void initialize() {
+	@Override
+	public void initialize(URL url, ResourceBundle resources) {
 		lobbyManager.joinLobby();
 		this.thread.start();
 	}
