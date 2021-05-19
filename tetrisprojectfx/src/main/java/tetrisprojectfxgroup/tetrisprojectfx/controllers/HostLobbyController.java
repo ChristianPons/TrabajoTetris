@@ -35,7 +35,6 @@ public class HostLobbyController implements Initializable {
 		public void task() {
 			try {
 				lobby = lobbyManager.findLobby();
-				System.out.println(lobby.getGuest().getName());
 				Platform.runLater(new Runnable() {
 
 					@Override
