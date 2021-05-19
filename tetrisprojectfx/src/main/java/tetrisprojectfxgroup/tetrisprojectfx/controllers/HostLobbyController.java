@@ -3,6 +3,8 @@ package tetrisprojectfxgroup.tetrisprojectfx.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import gamecore.resources.VariableTimer;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -12,6 +14,9 @@ import services.dao.GameLobby;
 import services.manager.LobbyManager;
 
 public class HostLobbyController implements Initializable{
+	
+	private static final int INTERVAL = 500;
+	
 	@FXML
 	private Label lobbyId;
 	@FXML
@@ -21,36 +26,34 @@ public class HostLobbyController implements Initializable{
 	private LobbyManager lobbyManager = new LobbyManager(BasicData.getPlayer().getPlayerId(),
 			new Conector().getMySQLConnection());
 	private GameLobby lobby = lobbyManager.findLobby();
-	private Runnable runnable = new Runnable() {
-		
+	
+	private VariableTimer timer = new VariableTimer() {
 		@Override
-		public void run() {
-			
-			try {
-				while (true) {
-					lobby = lobbyManager.findLobby();
+		public void task() {
+			lobby = lobbyManager.findLobby();
+			Platform.runLater(new Runnable() {
+
+				@Override
+				public void run() {
 					lobbyId.setText("ID de la sala: " + lobby.getRoomId());
 					hostName.setText("Dueño: " + lobby.getHost().getName());
 					guestName.setText("Invitado: " + lobby.getGuest().getName());
-					Thread.sleep(500);
+					
 				}
-			} catch (InterruptedException e) {
-				System.err.println("Thread interrupted");
-			}
-			
+				
+			});
 		}
 	};
-	private Thread thread = new Thread(runnable);
 
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
 		lobbyManager.joinLobby();
-		this.thread.start();
+		timer.setInterval(INTERVAL);
 	}
 	
 	@FXML
 	public void startGame() {
-		if(lobbyManager.startGame()) thread.stop();
+		if(lobbyManager.startGame()) timer.stop();
 	}
 
 }
