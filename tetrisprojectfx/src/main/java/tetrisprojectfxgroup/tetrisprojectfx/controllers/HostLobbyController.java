@@ -25,7 +25,7 @@ public class HostLobbyController implements Initializable{
 	private Label guestName;
 	private LobbyManager lobbyManager = new LobbyManager(BasicData.getPlayer().getPlayerId(),
 			new Conector().getMySQLConnection());
-	private GameLobby lobby = lobbyManager.findLobby();
+	private GameLobby lobby;
 	
 	private VariableTimer timer = new VariableTimer() {
 		@Override
