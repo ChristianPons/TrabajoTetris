@@ -17,8 +17,8 @@ public class MainMenuController implements Initializable{
 	
 	
 	@FXML
-	public void searchMatch() {
-		
+	public void enterMultiplayer() throws IOException {
+		App.setRoot("MultiplayerOptions");
 	}
 	
 	@FXML

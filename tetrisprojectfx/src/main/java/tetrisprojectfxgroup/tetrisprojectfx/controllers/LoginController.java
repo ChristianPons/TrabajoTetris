@@ -32,6 +32,9 @@ public class LoginController {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			Player player = PlayerManager.login(con, userName.getText(), password.getText());
 			
+			if(player != null) {
+				throw new SQLException();
+			}
 			
 			data = new BasicData();
 			data.setPlayer(player);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -7,8 +8,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="522.0" style="-fx-background-image: url(&quot;miscellaneous/Background.png&quot;); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tetrisprojectfxgroup.tetrisprojectfx.controllers.MainMenuController">
    <children>
-      <Label fx:id="userName" layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="170.0" text="null" />
-      <Button contentDisplay="CENTER" layoutX="176.0" layoutY="263.0" mnemonicParsing="false" onAction="#searchMatch" prefHeight="31.0" prefWidth="170.0" text="Buscar Partida" />
+      <Label fx:id="userName" layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="170.0" text="null" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Button contentDisplay="CENTER" layoutX="176.0" layoutY="263.0" mnemonicParsing="false" onAction="#enterMultiplayer" prefHeight="31.0" prefWidth="170.0" text="Multijugador" />
       <Button contentDisplay="CENTER" layoutX="176.0" layoutY="322.0" mnemonicParsing="false" onAction="#soloPlay" prefHeight="31.0" prefWidth="170.0" text="Jugar en solitario" />
       <Button contentDisplay="CENTER" layoutX="176.0" layoutY="379.0" mnemonicParsing="false" onAction="#goToOptions" prefHeight="31.0" prefWidth="170.0" text="Opciones" />
    </children>
