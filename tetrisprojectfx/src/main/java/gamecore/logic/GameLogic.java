@@ -14,8 +14,8 @@ import lombok.Getter;
  */
 public class GameLogic {
 
-	private static final int MAX_LVL = 29;
-	private static final int MAX_VSBLLINES = 5;
+	private static final int MAX_LVL = 10;
+	private static final int MAX_VSBLLINES = 3;
 	private static final int[] SCORE_PER_LINES = {40, 100, 300, 1200};
 	protected static final int[] SPEED_CURVE = {800, 716, 633, 640, 550, 466, 383, 300, 216, 133, 100, 83, 83, 83,
 			66, 66, 66, 50, 50, 50, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 16};
