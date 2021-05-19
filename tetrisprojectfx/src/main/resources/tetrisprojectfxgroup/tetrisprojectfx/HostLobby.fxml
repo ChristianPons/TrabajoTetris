@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tetrisprojectfxgroup.tetrisprojectfx.controllers.HostLobbyController">
+   <children>
+      <Label fx:id="hostName" layoutX="51.0" layoutY="80.0" prefHeight="63.0" prefWidth="169.0" text="Creador" />
+      <Label fx:id="guestName" layoutX="281.0" layoutY="86.0" prefHeight="63.0" prefWidth="169.0" text="Invitado" />
+      <Button layoutX="200.0" layoutY="228.0" mnemonicParsing="false" onAction="#startGame" prefHeight="30.0" prefWidth="88.0" text="Empezar" />
+      <Label fx:id="lobbyId" layoutX="174.0" layoutY="36.0" prefHeight="17.0" prefWidth="140.0" text="Id de la sala: " />
+   </children>
+</AnchorPane>

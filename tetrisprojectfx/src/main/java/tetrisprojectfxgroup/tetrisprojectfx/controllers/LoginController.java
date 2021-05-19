@@ -30,7 +30,6 @@ public class LoginController {
 	public void tryLogin(ActionEvent evt) throws IOException {
 		try (Connection con = new Conector().getMySQLConnection()) {
 			Player player = PlayerManager.login(con, userName.getText(), password.getText());
-			System.out.println(player);
 			if(player.getPlayerId() == 0) {
 				throw new SQLException();
 			}
@@ -51,7 +50,6 @@ public class LoginController {
 	@FXML
 	public void signIn() throws IOException {
 		App.setRoot("SignIn");
-		
 	}
 	
 }
