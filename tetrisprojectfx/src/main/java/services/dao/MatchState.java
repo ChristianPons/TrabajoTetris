@@ -33,13 +33,9 @@ public class MatchState {
 		}
 	}
 	
-	public Board getRelativePlayer1Board(boolean isPlayer1) {
-		if(isPlayer1) return Board.getFromJSONString(user1Board);
-		else return Board.getFromJSONString(user2Board);
-	}
-	
-	public Board getRelativePlayer2Board(boolean isPlayer1) {
+	public Board getEnemyBoard(boolean isPlayer1) {
 		if(isPlayer1) return Board.getFromJSONString(user2Board);
 		else return Board.getFromJSONString(user1Board);
 	}
+	
 }
