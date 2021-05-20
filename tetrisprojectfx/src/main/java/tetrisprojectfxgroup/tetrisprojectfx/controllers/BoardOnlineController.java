@@ -119,10 +119,10 @@ public class BoardOnlineController extends GameLogic implements Initializable {
 		super(5, 3);
 		if(BasicData.isFirstPlayer()) {
 			msm = new MatchStateManager(BasicData.getJoinedLobbyId(), BasicData.getPlayer().getPlayerId(),
-					BasicData.getOtherPlayerId(), true, new Conector().getMySQLConnection());
+					BasicData.getOtherPlayer().getPlayerId(), true, new Conector().getMySQLConnection());
 			msm.createMatch();
 		}
-		else msm = new MatchStateManager(BasicData.getJoinedLobbyId(), BasicData.getOtherPlayerId(),
+		else msm = new MatchStateManager(BasicData.getJoinedLobbyId(), BasicData.getOtherPlayer().getPlayerId(),
 				BasicData.getPlayer().getPlayerId(), false, new Conector().getMySQLConnection());
 	}
 
@@ -147,20 +147,32 @@ public class BoardOnlineController extends GameLogic implements Initializable {
 	@Override
 	public int leavePiece() {
 		int nLines = super.leavePiece();
-		msm.updateState(getBoard().getJSON(), getScore());
-		updateOnline();
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				msm.updateState(getBoard().getJSON(), getScore());
+				updateOnline();
+			}
+		}).run();;
 		return nLines;
 	}
 	
 	public void updateOnline() {
-		MatchState state = msm.getLastStateFromMatch();
-		Platform.runLater(new Runnable() {
+		new Thread(new Runnable() {
+
 			@Override
 			public void run() {
-				paintBoard2(state.getEnemyBoard(msm.isPlayer1()).getBoard(), true);
-				scorep2.setText("" + (msm.isPlayer1() ? state.getUser2Score() : state.getUser1Score()));
+				MatchState state = msm.getLastStateFromMatch();
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						paintBoard2(state.getEnemyBoard(msm.isPlayer1()).getBoard(), true);
+						scorep2.setText("" + (msm.isPlayer1() ? state.getUser2Score() : state.getUser1Score()));
+					}
+				});
 			}
-		});
+		}).run();;
+		
 	}
 	
 	@Override
@@ -189,7 +201,7 @@ public class BoardOnlineController extends GameLogic implements Initializable {
 		else if(keyCode == 32) dropDown();
 		else if(keyCode == 67) savePieces();
 		else if(keyCode == 88) rotate(false);
-		else if(keyCode == 27) goBack();
+		else if(keyCode == 27) gameOver();
 	}
 	
 	
@@ -307,7 +319,9 @@ public class BoardOnlineController extends GameLogic implements Initializable {
 		fallTimer.setInterval(SPEED_CURVE[getLevel()]);
 		updateLevel();
 		increaseScore(0);
-		App.reSize();
 		onlineUpdate.setInterval(300);
+		player1.setText(BasicData.getPlayer().getUserName());
+		player2.setText(BasicData.getOtherPlayer().getUserName());
+		App.reSize();
 	}
 }

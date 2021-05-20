@@ -52,27 +52,26 @@ public class MatchStateManager {
 		String sql = "";
 		MatchState lastState = getLastStateFromMatch();
 		sql = "insert into match_state(match_id, state_id, user1_board, user2_board, user1_score, user2_score, user1_haslost, user2_haslost) values("
-				+ "?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "?, (select max(m.state_id) + 1 from match_state m), ?, ?, ?, ?, ?, ?)";
 		if (!((lastState.isUser1HasLost() && isPlayer1) || (lastState.isUser2HasLost() && !isPlayer1))) {
 			try (PreparedStatement prepstmt = con.prepareStatement(sql)) {
 				prepstmt.setInt(1, matchId);
-				prepstmt.setInt(2, lastState.getStateId() + 1);
 				if (isPlayer1) {
-					prepstmt.setString(3, jsonBoard);
-					prepstmt.setString(4, lastState.getUser2Board());
-					prepstmt.setInt(5, score);
-					prepstmt.setInt(6, lastState.getUser2Score());
-					prepstmt.setBoolean(7, false);
-					prepstmt.setBoolean(8, lastState.isUser2HasLost());
+					prepstmt.setString(2, jsonBoard);
+					prepstmt.setString(3, lastState.getUser2Board());
+					prepstmt.setInt(4, score);
+					prepstmt.setInt(5, lastState.getUser2Score());
+					prepstmt.setBoolean(6, false);
+					prepstmt.setBoolean(7, lastState.isUser2HasLost());
 				} else {
-					prepstmt.setString(3, lastState.getUser1Board());
-					prepstmt.setString(4, jsonBoard);
-					prepstmt.setInt(5, lastState.getUser1Score());
-					prepstmt.setInt(6, score);
-					prepstmt.setBoolean(7, lastState.isUser1HasLost());
-					prepstmt.setBoolean(8, false);
+					prepstmt.setString(2, lastState.getUser1Board());
+					prepstmt.setString(3, jsonBoard);
+					prepstmt.setInt(4, lastState.getUser1Score());
+					prepstmt.setInt(5, score);
+					prepstmt.setBoolean(6, lastState.isUser1HasLost());
+					prepstmt.setBoolean(7, false);
 				}
-				return prepstmt.execute();
+				return prepstmt.executeUpdate() > 0;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

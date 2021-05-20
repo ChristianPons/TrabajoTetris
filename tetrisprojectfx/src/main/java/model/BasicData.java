@@ -13,7 +13,7 @@ public class BasicData {
 	private static Player player;
 	@Getter @Setter private static int joinedLobbyId;
 	@Getter @Setter private static boolean isFirstPlayer = false;
-	@Getter @Setter private static int otherPlayerId;
+	@Getter @Setter private static Player otherPlayer;
 
 	public static Player getPlayer() {
 		return player;
