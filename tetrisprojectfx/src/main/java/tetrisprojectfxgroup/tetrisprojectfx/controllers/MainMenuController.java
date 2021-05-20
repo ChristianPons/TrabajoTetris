@@ -33,10 +33,11 @@ public class MainMenuController implements Initializable{
 	
 	/**
 	 * This method is used to go to options window.
+	 * @throws IOException 
 	 */
 	@FXML
-	public void goToOptions() {
-		
+	public void goToOptions() throws IOException {
+		App.setRoot("Options");
 	}
 	
 	/**

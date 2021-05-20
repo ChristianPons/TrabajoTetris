@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="tetrisprojectfxgroup.tetrisprojectfx.controllers.OptionsController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="tetrisprojectfxgroup.tetrisprojectfx.controllers.OptionController">
    <children>
       <Pane prefHeight="378.0" prefWidth="339.0">
          <children>

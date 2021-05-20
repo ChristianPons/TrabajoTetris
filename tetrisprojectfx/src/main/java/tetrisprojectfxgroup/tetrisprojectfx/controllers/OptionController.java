@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import model.BasicData;
 import tetrisprojectfxgroup.tetrisprojectfx.App;
 
-public class OptionControllers {
+public class OptionController {
 
 	@FXML
 	public void goToChangePassword() throws IOException {

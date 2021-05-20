@@ -130,6 +130,7 @@ public class BoardController extends GameLogic implements Initializable{
 		rightTimer.stop();
 		try {
 			App.setRoot("MainMenu");
+			App.reSize();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
