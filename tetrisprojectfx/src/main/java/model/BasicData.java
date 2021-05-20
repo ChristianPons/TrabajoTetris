@@ -23,5 +23,9 @@ public class BasicData {
 		player = player2;
 		
 	}
+	public static void noPlayer(Player noPlayer) {
+		player = noPlayer;
+		
+	}
 
 }

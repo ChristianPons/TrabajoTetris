@@ -9,8 +9,11 @@ import tetrisprojectfxgroup.tetrisprojectfx.App;
 
 public class StartController {
 	
-	public StartController() throws IOException {
-	}
+	/**
+	 * THis method is used to go to the window login.
+	 * @param evt
+	 * @throws IOException
+	 */
 	
     @FXML
     private void goToLogin(ActionEvent evt) throws IOException {

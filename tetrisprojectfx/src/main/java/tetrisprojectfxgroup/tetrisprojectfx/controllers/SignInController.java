@@ -24,6 +24,15 @@ public class SignInController {
 	@FXML private TextField email;
 	@FXML private TextField country;
 	
+	/**
+	 * This method tries to add a new player using the method singIn from PlayerManager using the values of the text fields of the window.
+	 * <ul>
+	 * 		<li>if all the fields are filled and password and confirmPassword are equal a new player is added to the table with that values.</li>
+	 * 		<li>if some field is empty or the password and confirmPaswword does not match, Shows an alert.</li>
+	 * </ul>
+	 * @param evt
+	 */
+	
 	@FXML
 	public void trySignIn(ActionEvent evt) {
 		if (name.getText() != null && surnames.getText() != null && userName.getText() != null
@@ -34,7 +43,6 @@ public class SignInController {
 				PlayerManager.signIn(con, name.getText(), surnames.getText(), userName.getText(), password.getText(),
 						email.getText(), country.getText());
 				
-					
 					goBack();
 				
 				
@@ -45,9 +53,6 @@ public class SignInController {
 			}
 		
 		}else {
-			if(surnames.getText() != null) {
-				System.out.println(name.getText());
-			}
 			Alert a = new Alert(AlertType.ERROR);
 			String tpassword = "La contraseña introducida y su confirmación no son iguales";
 			String empty = "Alguno de los campos está vacío, por favor rellene todos los campos";
@@ -57,6 +62,11 @@ public class SignInController {
 		
 		
 	}
+	
+	/**
+	 * This method returns to the first window.
+	 * @throws IOException
+	 */
 	
 	@FXML
 	public void goBack() throws IOException {

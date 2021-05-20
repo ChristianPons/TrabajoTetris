@@ -21,23 +21,28 @@ public class MainMenuController implements Initializable{
 		App.setRoot("MultiplayerOptions");
 	}
 	
+	/**
+	 * This method is used to go to board window.
+	 * @throws IOException
+	 */
+	
 	@FXML
 	public void soloPlay() throws IOException {
 		App.setRoot("Board");
 	}
 	
+	/**
+	 * This method is used to go to options window.
+	 */
 	@FXML
 	public void goToOptions() {
 		
 	}
 	
-
-	public void setPlayer() {
-		
-		
-		
-	}
-
+	/**
+	 * This method sets the content of the label userName with the name in-game of the player.
+	 */
+	
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
 		this.userName.setText(BasicData.getPlayer().getUserName());

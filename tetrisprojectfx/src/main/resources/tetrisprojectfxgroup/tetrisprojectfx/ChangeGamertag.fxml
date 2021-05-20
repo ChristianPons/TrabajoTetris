@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="tetrisprojectfxgroup.tetrisprojectfx.controllers.ChangeGamertagController">
+   <children>
+      <Pane prefHeight="285.0" prefWidth="444.0">
+         <children>
+            <Label layoutX="134.0" layoutY="44.0" text="CAMBIAR USUARIO">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="41.0" layoutY="122.0" text="Nuevo usuario: " />
+            <TextField fx:id="newGamertag" layoutX="145.0" layoutY="117.0" prefHeight="31.0" prefWidth="277.0" promptText="No puede tener más de 20 caracteres" />
+            <Button layoutX="14.0" layoutY="240.0" mnemonicParsing="false" onAction="#goBack" text="Volver" />
+            <Button layoutX="245.0" layoutY="180.0" mnemonicParsing="false" onAction="#changeGamertag" prefHeight="31.0" prefWidth="177.0" text="Confirmar gamertag" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
