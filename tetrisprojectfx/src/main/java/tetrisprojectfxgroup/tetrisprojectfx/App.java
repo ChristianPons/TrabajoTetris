@@ -1,18 +1,12 @@
 package tetrisprojectfxgroup.tetrisprojectfx;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
-import gamecore.logic.Board;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import services.conector.Conector;
-import services.manager.LobbyManager;
-import services.manager.MatchStateManager;
 
 /**
  * JavaFX App
@@ -37,7 +31,10 @@ public class App extends Application {
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
         myStage.sizeToScene();
-
+    }
+    
+    public static void reSize() {
+    	myStage.sizeToScene();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

@@ -47,7 +47,6 @@ public class HostLobbyController implements Initializable {
 							goBack();
 						}
 					}
-
 				});
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -64,8 +63,19 @@ public class HostLobbyController implements Initializable {
 
 	@FXML
 	public void startGame() {
-		if (lobbyManager.startGame())
+		System.out.println("llega");
+		lobbyManager.startGame();
 			timer.stop();
+			BasicData.setFirstPlayer(true);
+			BasicData.setOtherPlayerId(lobby.getHost().getPlayerId());
+			BasicData.setJoinedLobbyId(lobby.getRoomId());
+			System.out.println("sigue");
+			try {
+				App.setRoot("BoardOnline");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			System.out.println("termina");
 	}
 	
 	@FXML

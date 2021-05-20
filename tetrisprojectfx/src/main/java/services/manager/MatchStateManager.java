@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gamecore.logic.Board;
+import lombok.Getter;
 import services.dao.MatchState;
 
 public class MatchStateManager {
 
 	private int matchId;
 	private Connection con;
-	private boolean isPlayer1;
+	@Getter private boolean isPlayer1;
 	private int player1Id;
 	private int player2Id;
 
@@ -28,7 +29,7 @@ public class MatchStateManager {
 
 	public MatchState getLastStateFromMatch() {
 		List<MatchState> match = getEntireMatch();
-		return match.get(match.size() - 1);
+		return match.get(!match.isEmpty() ? match.size() - 1 : 0);
 	}
 
 	public List<MatchState> getEntireMatch() {

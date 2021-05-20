@@ -156,7 +156,9 @@ public class LobbyManager {
 	public boolean checkIfStarted() {
 		try (PreparedStatement prepstmt = con.prepareStatement("select has_begun from game_lobby where id = ?")) {
 			prepstmt.setInt(1, lobbyId);
-			return prepstmt.executeQuery().getBoolean("has_begun");
+			boolean funciona = prepstmt.executeQuery().getBoolean("has_begun");
+			System.out.println(funciona);
+			return funciona;
 		} catch (SQLException e) {
 			return false;
 		}

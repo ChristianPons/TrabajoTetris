@@ -35,9 +35,7 @@ public class GuestLobbyController implements Initializable {
 		public void task() {
 			try {
 				lobby = lobbyManager.findLobby();
-
 				Platform.runLater(new Runnable() {
-
 					@Override
 					public void run() {
 						try {
@@ -48,14 +46,21 @@ public class GuestLobbyController implements Initializable {
 							goBack();
 						}
 					}
-
 				});
-				if (lobbyManager.checkIfStarted()) {
-
+				System.out.println("repite " + lobby.getRoomId() + " - " + lobby.isHasBegun());
+				if (lobby.isHasBegun()) {
+					System.out.println("sigue");
+					BasicData.setFirstPlayer(false);
+					BasicData.setOtherPlayerId(lobby.getHost().getPlayerId());
+					BasicData.setJoinedLobbyId(lobby.getRoomId());
+					System.out.println("llega");
+					App.setRoot("BoardOnline");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 				goBack();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 	};
