@@ -46,7 +46,6 @@ public class PlayerManager {
 		}
 	}
 	
-	// Quizás sería mejor buscar por el nombre del usuario
 	/**
 	 *  This method gets all the data of a player from the table players.
 	 * @param con Connection to the database.
@@ -142,6 +141,21 @@ public class PlayerManager {
 			stmt.setTimestamp(8, new Timestamp(System.currentTimeMillis()));
 			stmt.executeUpdate();
 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 *  This method is used to remove a player from players table.
+	 * @param con Connection to database.
+	 * @param userName The in-game name of the player.
+	 */
+	public void deletePlayer(Connection con, String userName) {
+		try(PreparedStatement stmt = con.prepareStatement("DELETE players WHERE user_name = ?")) {
+			stmt.setString(1, userName);
+			stmt.executeQuery();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

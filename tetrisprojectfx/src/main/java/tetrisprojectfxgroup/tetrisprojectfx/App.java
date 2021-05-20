@@ -27,12 +27,19 @@ public class App extends Application {
     }
     
     
-
+    /**
+     * This shows the window we send it and.
+     * @param fxml The xml archive of the window.
+     * @throws IOException
+     */
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
         myStage.sizeToScene();
     }
     
+    /**
+     * This method resizes the window to show all the window content.
+     */
     public static void reSize() {
     	myStage.sizeToScene();
     }

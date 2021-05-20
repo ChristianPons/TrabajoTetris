@@ -30,7 +30,7 @@
                </padding>
             </Label>
             <TextField fx:id="userName" layoutX="180.0" layoutY="246.0" prefHeight="31.0" prefWidth="266.0" promptText="No puede tener más de 20 carcteres" />
-            <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="251.0" prefHeight="21.0" prefWidth="173.0" text="Nombre de usuario:">
+            <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="251.0" prefHeight="21.0" prefWidth="173.0" text="Gamertag:">
                <padding>
                   <Insets right="10.0" />
                </padding>

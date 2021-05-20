@@ -108,6 +108,11 @@ public class MatchManager {
 		return null;
 	}
 	
+	/**
+	 *  This method is used to get a list with all the matches in the table.
+	 * @param con Connection to database.
+	 * @return a list with the matches.
+	 */
 	public List<Match> findAllMatches(Connection con){
 		List<Match> matches = new ArrayList<>();
 		try(PreparedStatement prepstmt = con.prepareStatement("select * from matches")){
@@ -127,6 +132,12 @@ public class MatchManager {
 		return matches;
 	}
 
+	/**
+	 *  This method is used to get the wanted player from a playerList using the player's id.
+	 * @param playerId The id of the wanted player.
+	 * @param playerList A list with several players.
+	 * @return Player class object with the player's data.
+	 */
 	private Player findPlayer(int playerId, List<Player> playerList) {
 		Player playerFound = playerList.stream().filter(player -> player.getPlayerId() == playerId).findFirst().orElse(null);
 		return playerFound;
