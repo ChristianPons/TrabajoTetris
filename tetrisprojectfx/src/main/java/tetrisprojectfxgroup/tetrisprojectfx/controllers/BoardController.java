@@ -1,6 +1,8 @@
 package tetrisprojectfxgroup.tetrisprojectfx.controllers;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import gamecore.logic.Board;
@@ -27,7 +29,7 @@ import tetrisprojectfxgroup.tetrisprojectfx.App;
 public class BoardController extends GameLogic implements Initializable{
 
 	public BoardController() {
-		super(1, 3);
+		super(5, 3);
 	}
 	
 	private int sidewaysInitialDelay = 110;
@@ -43,6 +45,7 @@ public class BoardController extends GameLogic implements Initializable{
 	@FXML private GridPane piece3;
 	@FXML private GridPane pieceHolder;
 	@FXML private GridPane board;
+	private List<EventHandler<KeyEvent>> controls = new ArrayList<>();
 	private Pane[][] panelBoard = new Pane[Board.BOARD_HEIGHT - 2][Board.BOARD_WIDTH];
 	private Color[] colors = {Color.TRANSPARENT, Color.YELLOW, Color.CYAN, Color.MAGENTA, Color.GREEN, Color.RED, Color.ORANGE, Color.BLUE};
 	private VariableTimer fallTimer = new VariableTimer() {
@@ -62,18 +65,20 @@ public class BoardController extends GameLogic implements Initializable{
 	};
 	
 	private void setControls() {
-		board.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
+		controls.add(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
 				keyPressed(event);
 			}
 		});
-		board.getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
+		controls.add(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
 				keyReleased(event);
 			}
 		});
+		board.getScene().setOnKeyPressed(controls.get(0));
+		board.getScene().setOnKeyReleased(controls.get(1));
 	}
 	
 	private VariableTimer leftTimer = new VariableTimer() {
@@ -120,6 +125,9 @@ public class BoardController extends GameLogic implements Initializable{
 	}
 	
 	public void goBack() {
+		fallTimer.stop();
+		leftTimer.stop();
+		rightTimer.stop();
 		try {
 			App.setRoot("MainMenu");
 		} catch (IOException e) {
@@ -171,7 +179,7 @@ public class BoardController extends GameLogic implements Initializable{
 	
 	public void softDropPress() {
 		fallTimer.task();
-		fallTimer.setInterval(getLevel() < 12 ? softDropDelay : (int)(SPEED_CURVE[getLevel()] - SPEED_CURVE[getLevel()] * 0.4));
+		fallTimer.setInterval(getLevel() < 12 ? softDropDelay : (int)(SPEED_CURVE[getLevel()] - SPEED_CURVE[getLevel()] * 0.3));
 		isSoftDropping = true;
 	}
 	
@@ -233,7 +241,6 @@ public class BoardController extends GameLogic implements Initializable{
 		updateLevel();
 		increaseScore(0);
 	}
-
 
 }
 
