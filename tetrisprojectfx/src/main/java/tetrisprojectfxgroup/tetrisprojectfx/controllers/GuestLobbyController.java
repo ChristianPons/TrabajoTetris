@@ -18,7 +18,7 @@ import tetrisprojectfxgroup.tetrisprojectfx.App;
 
 public class GuestLobbyController implements Initializable {
 
-	private static final int INTERVAL = 500;
+	private static final int INTERVAL = 200;
 
 	@FXML
 	private Label lobbyId;
@@ -40,20 +40,18 @@ public class GuestLobbyController implements Initializable {
 					public void run() {
 						try {
 							lobbyId.setText("ID de la sala: " + lobby.getRoomId());
-							hostName.setText("Dueño: " + lobby.getHost().getName());
-							guestName.setText("Invitado: " + lobby.getGuest().getName());
+							hostName.setText("Dueño: " + lobby.getHost().getUserName());
+							guestName.setText("Invitado: " + lobby.getGuest().getUserName());
 						} catch(NullPointerException e) {
 							goBack();
 						}
 					}
 				});
-				System.out.println("repite " + lobby.getRoomId() + " - " + lobby.isHasBegun());
 				if (lobby.isHasBegun()) {
-					System.out.println("sigue");
 					BasicData.setFirstPlayer(false);
-					BasicData.setOtherPlayerId(lobby.getHost().getPlayerId());
+					BasicData.setOtherPlayer(lobby.getHost());
 					BasicData.setJoinedLobbyId(lobby.getRoomId());
-					System.out.println("llega");
+					lobbyManager.leaveLobby();
 					App.setRoot("BoardOnline");
 				}
 			} catch (SQLException e) {

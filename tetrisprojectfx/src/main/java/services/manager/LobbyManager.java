@@ -170,7 +170,7 @@ public class LobbyManager {
 				try (PreparedStatement prepstmt = con
 						.prepareStatement("update game_lobby set has_begun=true where id = ?")) {
 					prepstmt.setInt(1, lobbyId);
-					return prepstmt.execute();
+					return prepstmt.executeUpdate() > 0;
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

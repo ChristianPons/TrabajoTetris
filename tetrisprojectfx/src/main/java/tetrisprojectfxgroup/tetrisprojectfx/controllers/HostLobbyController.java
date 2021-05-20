@@ -41,9 +41,9 @@ public class HostLobbyController implements Initializable {
 					public void run() {
 						try {
 							lobbyId.setText("ID de la sala: " + lobby.getRoomId());
-							hostName.setText("Dueño: " + lobby.getHost().getName());
-							guestName.setText("Invitado: " + lobby.getGuest().getName());
-						} catch(NullPointerException e) {
+							hostName.setText("Dueño: " + lobby.getHost().getUserName());
+							guestName.setText("Invitado: " + lobby.getGuest().getUserName());
+						} catch (NullPointerException e) {
 							goBack();
 						}
 					}
@@ -63,21 +63,20 @@ public class HostLobbyController implements Initializable {
 
 	@FXML
 	public void startGame() {
-		System.out.println("llega");
-		lobbyManager.startGame();
+		if (lobbyManager.startGame()) {
 			timer.stop();
 			BasicData.setFirstPlayer(true);
-			BasicData.setOtherPlayerId(lobby.getHost().getPlayerId());
+			BasicData.setOtherPlayer(lobby.getGuest());
 			BasicData.setJoinedLobbyId(lobby.getRoomId());
-			System.out.println("sigue");
+			lobbyManager.leaveLobby();
 			try {
 				App.setRoot("BoardOnline");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			System.out.println("termina");
+		}
 	}
-	
+
 	@FXML
 	public void goBack() {
 		timer.stop();
